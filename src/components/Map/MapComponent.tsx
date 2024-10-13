@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import './MapComponent.scss';
 
 interface MapComponentProps {
-	setWeather: (data: any) => void; // Accept setWeather from parent
+	setWeather: (data: any) => void;
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
@@ -17,13 +17,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 	>(null);
 	const [loading, setLoading] = useState(true);
 
-	// Custom hook to handle map clicks
 	const MapClickHandler = () => {
-		const map = useMap(); // Get the map instance
+		const map = useMap();
 
 		useMapEvents({
 			click: async (e) => {
-				const { lat, lng } = e.latlng; // Extract lat and lng from the event
+				const { lat, lng } = e.latlng;
 
 				setMarkerPosition([lat, lng]);
 
