@@ -1,0 +1,43 @@
+{
+	"coord": {
+		"lon": 12.5683,
+		"lat": 55.6761
+	},
+	"weather": [
+		{
+			"id": 800,
+			"main": "Clear",
+			"description": "clear sky",
+			"icon": "01d"
+		}
+	],
+	"base": "stations",
+	"main": {
+		"temp": 300.15,
+		"feels_like": 298.45,
+		"temp_min": 299.15,
+		"temp_max": 301.15,
+		"pressure": 1012,
+		"humidity": 50
+	},
+	"visibility": 10000,
+	"wind": {
+		"speed": 3.1,
+		"deg": 220
+	},
+	"clouds": {
+		"all": 0
+	},
+	"dt": 1638301861,
+	"sys": {
+		"type": 2,
+		"id": 2038501,
+		"country": "DK",
+		"sunrise": 1638285791,
+		"sunset": 1638330378
+	},
+	"timezone": 3600,
+	"id": 2618425,
+	"name": "Copenhagen",
+	"cod": 200
+}
