@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, useMapEvents, useMap } from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
+import './MapComponent.scss';
 
 interface MapComponentProps {
 	setWeather: (data: any) => void; // Accept setWeather from parent
@@ -39,7 +40,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 					const popup = L.popup()
 						.setLatLng([lat, lng])
 						.setContent(
-							`<div>
+							`<div class='popup-details'>
 								<h1>${response.data.name}</h1>
 								<h2>Temperature: ${Math.round(response.data.main.temp - 273.15)}°C</h2>
 								<h2>Condition: ${response.data.weather[0].description}</h2>
@@ -76,13 +77,17 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 
 	// Show loading message while fetching location
 	if (loading) {
-		return <div>Loading your location...</div>;
+		return (
+			<div>
+				<h1>Loading your location...</h1>
+			</div>
+		);
 	}
 
 	return (
-		<div style={{ height: '100%', width: '100%' }}>
+		<div className="map-box">
 			<MapContainer
-				center={currentPosition || [56.672743, 12.467425]} // Fallback if geolocation fails
+				center={currentPosition || [56.672743, 12.467425]}
 				zoom={13}
 				style={{ height: '100%', width: '100%' }}
 			>

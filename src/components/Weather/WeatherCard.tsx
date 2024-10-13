@@ -19,10 +19,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 	const {
 		name, // City name
 		sys: { country, sunrise, sunset },
-		main: { temp, feels_like, temp_min, temp_max, humidity, pressure },
+		main: { temp, temp_min, temp_max, humidity, pressure },
 		weather: weatherInfo,
-		wind: { speed, deg },
-		clouds: { all: cloudiness },
+		wind: { speed },
 		visibility,
 	} = weather;
 
@@ -47,9 +46,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 			</h2>
 			<TemperatureToggle temp={temp} />
 
-			{/* Temperature with toggle */}
-
-			{/* Additional Weather Details */}
 			<div className="weather-details">
 				<div className="weather-details__box">
 					<img src={Rise} alt="Sun rise" className="weather-icon" />
