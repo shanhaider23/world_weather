@@ -4,8 +4,47 @@ import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import './MapComponent.scss';
 
+interface WeatherData {
+	coord: {
+		lon: number;
+		lat: number;
+	};
+	weather: [
+		{
+			id: number;
+			main: string;
+			description: string;
+			icon: string;
+		}
+	];
+	main: {
+		temp: number;
+		feels_like: number;
+		temp_min: number;
+		temp_max: number;
+		pressure: number;
+		humidity: number;
+	};
+	wind: {
+		speed: number;
+		deg: number;
+	};
+	clouds: {
+		all: number;
+	};
+	sys: {
+		country: string;
+		sunrise: number;
+		sunset: number;
+	};
+	name: string;
+	dt: number;
+	id: number;
+	cod: number;
+}
+
 interface MapComponentProps {
-	setWeather: (data: any) => void;
+	setWeather: (data: WeatherData) => void;
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
@@ -15,7 +54,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 	const [currentPosition, setCurrentPosition] = useState<
 		[number, number] | null
 	>(null);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	const MapClickHandler = () => {
 		const map = useMap();
@@ -23,11 +62,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 		useMapEvents({
 			click: async (e) => {
 				const { lat, lng } = e.latlng;
-
 				setMarkerPosition([lat, lng]);
 
 				try {
-					const response = await axios.get(
+					// Strong typing for the API response
+					const response = await axios.get<WeatherData>(
 						`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${
 							import.meta.env.VITE_OPENWEATHER_API_KEY
 						}`
@@ -86,7 +125,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 	return (
 		<div className="map-box">
 			<MapContainer
-				center={currentPosition || [56.672743, 12.467425]}
+				center={currentPosition || [56.672743, 12.467425]} // Fallback if geolocation fails
 				zoom={13}
 				style={{ height: '100%', width: '100%' }}
 			>

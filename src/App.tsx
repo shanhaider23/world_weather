@@ -1,12 +1,50 @@
 import React, { useState } from 'react';
-import MapComponent from './components/Map/MapComponent';
 import SearchComponent from './components/Search/SearchComponent';
 import WeatherCard from './components/Weather/WeatherCard';
-
+import MapComponent from './components/Map/MapComponent';
 import './styles/App.scss';
 
+interface WeatherData {
+	coord: {
+		lon: number;
+		lat: number;
+	};
+	weather: [
+		{
+			id: number;
+			main: string;
+			description: string;
+			icon: string;
+		}
+	];
+	main: {
+		temp: number;
+		feels_like: number;
+		temp_min: number;
+		temp_max: number;
+		pressure: number;
+		humidity: number;
+	};
+	wind: {
+		speed: number;
+		deg: number;
+	};
+	clouds: {
+		all: number;
+	};
+	sys: {
+		country: string;
+		sunrise: number;
+		sunset: number;
+	};
+	name: string;
+	dt: number;
+	id: number;
+	cod: number;
+}
+
 const App: React.FC = () => {
-	const [weather, setWeather] = useState<any>(null); // State shared by Search and Map
+	const [weather, setWeather] = useState<WeatherData | null>(null);
 
 	return (
 		<div className="app">
