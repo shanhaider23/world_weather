@@ -1,5 +1,6 @@
-// src/components/TemperatureToggle.tsx
 import React, { useState } from 'react';
+import './TemperatureToggle.scss';
+import toggleIcon from '../../assets/f_c-512.webp';
 
 const TemperatureToggle: React.FC<{ temp: number }> = ({ temp }) => {
 	const [scale, setScale] = useState<'C' | 'F'>('C');
@@ -15,13 +16,21 @@ const TemperatureToggle: React.FC<{ temp: number }> = ({ temp }) => {
 	};
 
 	return (
-		<div>
-			<button onClick={toggleScale}>
-				Switch to {scale === 'C' ? 'Fahrenheit' : 'Celsius'}
+		<div className="temperature-toggle">
+			<h1 className="temperature-display">
+				{convertTemperature(temp).toFixed(2)}°{scale}
+			</h1>
+			<button
+				className="temperature-btn"
+				title="Click to toggle between Celsius and Fahrenheit"
+				onClick={toggleScale}
+			>
+				<img
+					src={toggleIcon}
+					alt="Toggle Temperature"
+					className="toggle-icon"
+				/>
 			</button>
-			<p className="temperature-display">
-				Temperature: {convertTemperature(temp).toFixed(2)}°{scale}
-			</p>
 		</div>
 	);
 };

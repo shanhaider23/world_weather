@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './SearchComponent.scss';
+import WeatherIcon from '../../assets/meteorology_5903803.png';
+import Search from '../../assets/loupe.png';
 
 const SearchComponent: React.FC<{ setWeather: (data: any) => void }> = ({
 	setWeather,
@@ -13,7 +16,6 @@ const SearchComponent: React.FC<{ setWeather: (data: any) => void }> = ({
 					import.meta.env.VITE_OPENWEATHER_API_KEY
 				}`
 			);
-			console.log(response.data);
 			setWeather(response.data);
 		} catch (error) {
 			console.error('Error fetching weather data:', error);
@@ -21,8 +23,12 @@ const SearchComponent: React.FC<{ setWeather: (data: any) => void }> = ({
 	};
 
 	return (
-		<div>
-			<h1>Weather App</h1>
+		<div className="search-wrapper">
+			<div className="search-title">
+				<img src={WeatherIcon} alt="Weather" className="weather-icon" />
+				<h1>Weather App</h1>
+			</div>
+
 			<div className="search-box">
 				<input
 					type="text"
@@ -30,7 +36,9 @@ const SearchComponent: React.FC<{ setWeather: (data: any) => void }> = ({
 					value={city}
 					onChange={(e) => setCity(e.target.value)}
 				/>
-				<button onClick={handleSearch}>Search</button>
+				<button onClick={handleSearch}>
+					<img src={Search} alt="Search" className="search-icon" />
+				</button>
 			</div>
 		</div>
 	);

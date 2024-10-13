@@ -1,0 +1,54 @@
+.weather-card__place {
+	text-align: center;
+	h1 {
+		font-size: 2.5em;
+	}
+	h2 {
+		font-size: 2em;
+	}
+}
+
+.weather-card__icon {
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin: 0 auto;
+}
+.weather-card__description {
+	font-size: 2em;
+	font-weight: 200;
+	text-align: center;
+	padding: 0 0 1.5rem 0;
+}
+.weather-icon {
+	width: 50px;
+}
+.weather-details {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 4rem;
+	padding: 3rem 0 0 0;
+}
+.weather-details__box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+.copyright {
+	margin-top: 40px;
+	font-size: 1rem;
+	text-align: center;
+	color: var(--color-light--1);
+}
+
+.twitter-link:link,
+.twitter-link:visited {
+	color: var(--color-light--1);
+	transition: all 0.2s;
+}
+
+.twitter-link:hover,
+.twitter-link:active {
+	color: var(--color-light--2);
+}

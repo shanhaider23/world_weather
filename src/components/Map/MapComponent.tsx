@@ -3,7 +3,11 @@ import { MapContainer, TileLayer, useMapEvents, useMap } from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
-const MapComponent = () => {
+interface MapComponentProps {
+	setWeather: (data: any) => void; // Accept setWeather from parent
+}
+
+const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 	const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
 		null
 	);
@@ -11,7 +15,6 @@ const MapComponent = () => {
 		[number, number] | null
 	>(null);
 	const [loading, setLoading] = useState(true);
-	const [weather, setWeather] = useState<any>(null);
 
 	// Custom hook to handle map clicks
 	const MapClickHandler = () => {
@@ -29,7 +32,7 @@ const MapComponent = () => {
 							import.meta.env.VITE_OPENWEATHER_API_KEY
 						}`
 					);
-					setWeather(response.data);
+					setWeather(response.data); // Update weather in parent component
 
 					// Open popup for the clicked location
 					const marker = L.marker([lat, lng]).addTo(map);
@@ -87,7 +90,6 @@ const MapComponent = () => {
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
-
 				<MapClickHandler />
 			</MapContainer>
 		</div>
