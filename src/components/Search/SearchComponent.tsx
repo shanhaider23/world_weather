@@ -4,7 +4,6 @@ import './SearchComponent.scss';
 import WeatherIcon from '../../assets/meteorology_5903803.png';
 import Search from '../../assets/loupe.png';
 
-// Define the structure of the weather data received from the API
 interface WeatherData {
 	coord: {
 		lon: number;
@@ -50,25 +49,38 @@ interface SearchComponentProps {
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ setWeather }) => {
 	const [city, setCity] = useState<string>(''); // Strongly type `city` as a string
+	const [error, setError] = useState<string | null>(null); // To handle error messages
 
 	const handleSearch = async () => {
-		if (!city.trim()) return; // Prevent empty searches
+		if (!city.trim()) {
+			setError('Please enter a city name.');
+			return;
+		}
 
 		try {
-			// Strong typing for the API response
 			const response = await axios.get<WeatherData>(
 				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
 					import.meta.env.VITE_OPENWEATHER_API_KEY
 				}`
 			);
-			setWeather(response.data); // Pass the weather data to the parent component
+			setWeather(response.data);
+			setError(null);
 		} catch (error) {
-			// Improved error handling
 			if (axios.isAxiosError(error)) {
-				console.error('Error fetching weather data:', error.message);
+				if (error.response && error.response.status === 404) {
+					setError('City not found. Please check the spelling.');
+				} else {
+					setError('Error fetching weather data. Please try again later.');
+				}
 			} else {
-				console.error('Unexpected error:', error);
+				setError('Unexpected error occurred.');
 			}
+		}
+	};
+
+	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			handleSearch();
 		}
 	};
 
@@ -85,11 +97,14 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ setWeather }) => {
 					placeholder="Enter city name"
 					value={city}
 					onChange={(e) => setCity(e.target.value)}
+					onKeyDown={handleKeyPress} // Trigger search on pressing Enter
 				/>
 				<button onClick={handleSearch}>
 					<img src={Search} alt="Search" className="search-icon" />
 				</button>
 			</div>
+
+			{error && <div className="error-message">{error}</div>}
 		</div>
 	);
 };

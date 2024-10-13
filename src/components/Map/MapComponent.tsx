@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, useMapEvents, useMap } from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import './MapComponent.scss';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 interface WeatherData {
 	coord: {
@@ -65,15 +66,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 				setMarkerPosition([lat, lng]);
 
 				try {
-					// Strong typing for the API response
 					const response = await axios.get<WeatherData>(
 						`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${
 							import.meta.env.VITE_OPENWEATHER_API_KEY
 						}`
 					);
-					setWeather(response.data); // Update weather in parent component
+					setWeather(response.data);
 
-					// Open popup for the clicked location
 					const marker = L.marker([lat, lng]).addTo(map);
 					const popup = L.popup()
 						.setLatLng([lat, lng])
@@ -93,7 +92,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 		return null;
 	};
 
-	// Use geolocation to get current position
 	useEffect(() => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -113,11 +111,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 		}
 	}, []);
 
-	// Show loading message while fetching location
 	if (loading) {
 		return (
-			<div>
-				<h1>Loading your location...</h1>
+			<div style={{ textAlign: 'center', marginTop: '400px' }}>
+				<ClipLoader size={100} color="#36D7B7" />
 			</div>
 		);
 	}
