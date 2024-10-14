@@ -15,17 +15,17 @@ const TemperatureToggle: React.FC<TemperatureToggleProps> = ({ temp }) => {
 
 	const convertTemperature = (kelvinTemp: number): number => {
 		return scale === 'C'
-			? kelvinTemp - 273.15 // Convert to Celsius
-			: ((kelvinTemp - 273.15) * 9) / 5 + 32; // Convert to Fahrenheit
+			? kelvinTemp - 273.15
+			: ((kelvinTemp - 273.15) * 9) / 5 + 32;
 	};
 
 	return (
 		<div className="temperature-toggle">
-			<h1 className="temperature-display">
+			<h1 className="temperature-toggle__display">
 				{convertTemperature(temp).toFixed(2)}°{scale}
 			</h1>
 			<button
-				className="temperature-btn"
+				className="temperature-toggle__btn"
 				title="Click to toggle between Celsius and Fahrenheit"
 				onClick={toggleScale}
 				aria-label="Toggle temperature scale"
@@ -33,7 +33,7 @@ const TemperatureToggle: React.FC<TemperatureToggleProps> = ({ temp }) => {
 				<img
 					src={toggleIcon}
 					alt="Toggle Temperature"
-					className="toggle-icon"
+					className="temperature-toggle__icon"
 				/>
 			</button>
 		</div>

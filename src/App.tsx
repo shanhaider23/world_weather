@@ -37,6 +37,7 @@ interface WeatherData {
 		sunrise: number;
 		sunset: number;
 	};
+	visibility?: number;
 	name: string;
 	dt: number;
 	id: number;
@@ -48,11 +49,11 @@ const App: React.FC = () => {
 
 	return (
 		<div className="app">
-			<div className="sidebar">
+			<div className="app__sidebar">
 				<SearchComponent setWeather={setWeather} />
 				{weather && <WeatherCard weather={weather} />}
 			</div>
-			<div className="map">
+			<div className="app__map">
 				<MapComponent setWeather={setWeather} />
 			</div>
 		</div>

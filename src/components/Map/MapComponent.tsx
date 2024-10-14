@@ -77,7 +77,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 					const popup = L.popup()
 						.setLatLng([lat, lng])
 						.setContent(
-							`<div class='popup-details'>
+							`<div class='map-box__popup-details'>
 								<h1>${response.data.name}</h1>
 								<h2>Temperature: ${Math.round(response.data.main.temp - 273.15)}°C</h2>
 								<h2>Condition: ${response.data.weather[0].description}</h2>

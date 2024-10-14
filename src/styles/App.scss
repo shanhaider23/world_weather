@@ -1,7 +1,6 @@
 :root {
 	--color-brand--1: #ffb545;
 	--color-brand--2: #00c46a;
-
 	--color-dark--1: #2d3439;
 	--color-dark--2: #42484d;
 	--color-light--1: #aaa;
@@ -46,23 +45,26 @@ a:visited {
 	@media (max-width: 980px) {
 		flex-direction: column;
 	}
-}
-.sidebar {
-	background-color: var(--color-dark--1);
-	padding: 2rem 3rem 2rem 3rem;
-	display: flex;
-	flex-direction: column;
-	border-radius: 10px;
-	@media (max-width: 980px) {
-		padding: 2rem 1rem 1rem 1rem;
+
+	&__sidebar {
+		background-color: var(--color-dark--1);
+		padding: 2rem 3rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 10px;
+		@media (max-width: 980px) {
+			padding: 2rem 1rem 1rem 1rem;
+		}
+	}
+
+	&__map {
+		flex: 1;
+		height: 100%;
+		background-color: var(--color-light--1);
+		border-radius: 10px;
 	}
 }
-.map {
-	flex: 1;
-	height: 100%;
-	background-color: var(--color-light--1);
-	border-radius: 10px;
-}
+
 #root {
 	height: 100%;
 	border-radius: 10px;

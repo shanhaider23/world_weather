@@ -43,22 +43,20 @@ interface WeatherData {
 		sunrise: number;
 		sunset: number;
 	};
-	visibility: number; // Added visibility
+	visibility: number;
 	name: string;
 	dt: number;
 	id: number;
 	cod: number;
 }
 
-// WeatherCardProps interface now uses WeatherData
 interface WeatherCardProps {
-	weather: WeatherData; // Update to use WeatherData type
+	weather: WeatherData;
 }
 
 const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
-	// Destructure necessary data from the API response
 	const {
-		name, // City name
+		name,
 		sys: { country, sunrise, sunset },
 		main: { temp, temp_min, temp_max, humidity, pressure },
 		weather: weatherInfo,
@@ -66,14 +64,13 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 		visibility,
 	} = weather;
 
-	const { description, icon } = weatherInfo[0]; // Get weather description and icon
+	const { description, icon } = weatherInfo[0];
 
-	// Convert sunrise/sunset from UNIX time to readable format
 	const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
 	const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
 
-	const tempMinCelsius = (temp_min - 273.15).toFixed(1); // Convert min temp to Celsius
-	const tempMaxCelsius = (temp_max - 273.15).toFixed(1); // Convert max temp to Celsius
+	const tempMinCelsius = (temp_min - 273.15).toFixed(1);
+	const tempMaxCelsius = (temp_max - 273.15).toFixed(1);
 
 	const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
@@ -93,83 +90,87 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 			</div>
 			<TemperatureToggle temp={temp} />
 
-			<div className="weather-details">
-				<div className="weather-details__box">
-					<img src={Rise} alt="Sun rise" className="weather-icon" />
-					<div className="weather-values">
+			<div className="weather-card__details">
+				<div className="weather-card__details-box">
+					<img src={Rise} alt="Sun rise" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Sunrise</strong>
 						</h2>
 						<h2>{sunriseTime}</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={Set} alt="Sun set" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={Set} alt="Sun set" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Sunset</strong>
 						</h2>
 						<h2>{sunsetTime}</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={MinT} alt="Min Temp" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={MinT} alt="Min Temp" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Min Temp</strong>
 						</h2>
 						<h2>{tempMinCelsius}°C</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={MaxT} alt="Max Temp" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={MaxT} alt="Max Temp" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Max Temp</strong>
 						</h2>
 						<h2>{tempMaxCelsius}°C</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={Wind} alt="Wind" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={Wind} alt="Wind" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Wind</strong>
 						</h2>
 						<h2>{speed} m/s</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={Humidity} alt="Humidity" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img
+						src={Humidity}
+						alt="Humidity"
+						className="weather-card__icon-small"
+					/>
+					<div className="weather-card__values">
 						<h2>
 							<strong>Humidity</strong>
 						</h2>
 						<h2>{humidity}%</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={Vision} alt="Vision" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={Vision} alt="Vision" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>
 							<strong>Visibility</strong>
 						</h2>
 						<h2>{visibility / 1000} km</h2>
 					</div>
 				</div>
-				<div className="weather-details__box">
-					<img src={Speed} alt="Speed" className="weather-icon" />
-					<div className="weather-values">
+				<div className="weather-card__details-box">
+					<img src={Speed} alt="Speed" className="weather-card__icon-small" />
+					<div className="weather-card__values">
 						<h2>Pressure</h2>
 						<h2>{pressure} hPa</h2>
 					</div>
 				</div>
 			</div>
 			<div>
-				<p className="copyright">
+				<p className="weather-card__copyright">
 					&copy; Designed and Developed by:
 					<a
-						className="twitter-link"
+						className="weather-card__twitter-link"
 						target="_blank"
 						href="https://shanehaider.dk"
 					>

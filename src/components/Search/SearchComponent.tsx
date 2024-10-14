@@ -48,8 +48,8 @@ interface SearchComponentProps {
 }
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ setWeather }) => {
-	const [city, setCity] = useState<string>(''); // Strongly type `city` as a string
-	const [error, setError] = useState<string | null>(null); // To handle error messages
+	const [city, setCity] = useState<string>('');
+	const [error, setError] = useState<string | null>(null);
 
 	const handleSearch = async () => {
 		if (!city.trim()) {
@@ -85,26 +85,27 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ setWeather }) => {
 	};
 
 	return (
-		<div className="search-wrapper">
-			<div className="search-title">
-				<img src={WeatherIcon} alt="Weather" className="weather-icon" />
-				<h1>Weather App</h1>
+		<div className="search">
+			<div className="search__title">
+				<img src={WeatherIcon} alt="Weather" className="search__icon" />
+				<h1 className="search__heading">Weather App</h1>
 			</div>
 
-			<div className="search-box">
+			<div className="search__box">
 				<input
 					type="text"
 					placeholder="Enter city name"
 					value={city}
 					onChange={(e) => setCity(e.target.value)}
-					onKeyDown={handleKeyPress} // Trigger search on pressing Enter
+					onKeyDown={handleKeyPress}
+					className="search__input"
 				/>
-				<button onClick={handleSearch}>
-					<img src={Search} alt="Search" className="search-icon" />
+				<button onClick={handleSearch} className="search__button">
+					<img src={Search} alt="Search" className="search__icon-button" />
 				</button>
 			</div>
 
-			{error && <div className="error-message">{error}</div>}
+			{error && <div className="search__error-message">{error}</div>}
 		</div>
 	);
 };
