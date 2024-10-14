@@ -3,7 +3,7 @@ import './TemperatureToggle.scss';
 import toggleIcon from '../../assets/f_c-512.webp';
 
 interface TemperatureToggleProps {
-	temp: number; // Temperature in Kelvin
+	temp: number;
 }
 
 const TemperatureToggle: React.FC<TemperatureToggleProps> = ({ temp }) => {

@@ -10,8 +10,49 @@ import Humidity from '../../assets/humidity_11907737.png';
 import Vision from '../../assets/positive-vision_11757233.png';
 import Speed from '../../assets/speedometer_4328591.png';
 
+interface WeatherData {
+	coord: {
+		lon: number;
+		lat: number;
+	};
+	weather: [
+		{
+			id: number;
+			main: string;
+			description: string;
+			icon: string;
+		}
+	];
+	main: {
+		temp: number;
+		feels_like: number;
+		temp_min: number;
+		temp_max: number;
+		pressure: number;
+		humidity: number;
+	};
+	wind: {
+		speed: number;
+		deg: number;
+	};
+	clouds: {
+		all: number;
+	};
+	sys: {
+		country: string;
+		sunrise: number;
+		sunset: number;
+	};
+	visibility: number; // Added visibility
+	name: string;
+	dt: number;
+	id: number;
+	cod: number;
+}
+
+// WeatherCardProps interface now uses WeatherData
 interface WeatherCardProps {
-	weather: any;
+	weather: WeatherData; // Update to use WeatherData type
 }
 
 const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
@@ -31,19 +72,25 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 	const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
 	const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
 
-	// Construct the OpenWeatherMap icon URL
+	const tempMinCelsius = (temp_min - 273.15).toFixed(1); // Convert min temp to Celsius
+	const tempMaxCelsius = (temp_max - 273.15).toFixed(1); // Convert max temp to Celsius
+
 	const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
 	return (
 		<div className="weather-card">
-			<div className="weather-card__place">
-				<h1>{name}</h1>
-				<h2>{country}</h2>
+			<div className="weather-card__wrapper">
+				<div className="weather-card__place">
+					<h1>{name}</h1>
+					<h2>{country}</h2>
+				</div>
+				<div>
+					<img src={iconUrl} alt={description} className="weather-card__icon" />
+					<h2 className="weather-card__description">
+						{description.charAt(0).toUpperCase() + description.slice(1)}
+					</h2>
+				</div>
 			</div>
-			<img src={iconUrl} alt={description} className="weather-card__icon" />
-			<h2 className="weather-card__description">
-				{description.charAt(0).toUpperCase() + description.slice(1)}
-			</h2>
 			<TemperatureToggle temp={temp} />
 
 			<div className="weather-details">
@@ -71,7 +118,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 						<h2>
 							<strong>Min Temp</strong>
 						</h2>
-						<h2>{temp_min}</h2>
+						<h2>{tempMinCelsius}°C</h2>
 					</div>
 				</div>
 				<div className="weather-details__box">
@@ -80,7 +127,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 						<h2>
 							<strong>Max Temp</strong>
 						</h2>
-						<h2>{temp_max}</h2>
+						<h2>{tempMaxCelsius}°C</h2>
 					</div>
 				</div>
 				<div className="weather-details__box">

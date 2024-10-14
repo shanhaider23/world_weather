@@ -20,20 +20,50 @@
 	text-align: center;
 	padding: 0 0 1.5rem 0;
 }
+.weather-card__wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: 980px) {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+}
 .weather-icon {
-	width: 50px;
+	width: 40px;
+	@media (max-width: 680px) {
+		width: 30px;
+	}
 }
 .weather-details {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 4rem;
+	gap: 3rem;
 	padding: 3rem 0 0 0;
+	@media (max-width: 980px) {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		gap: 1rem;
+		padding: 3rem 1rem 1rem 1rem;
+		overflow-x: auto;
+	}
 }
 .weather-details__box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+	padding: 5px;
+	box-shadow: 0 4px 8px rgba(129, 129, 129, 0.2);
+	border-radius: 10px;
+}
+.weather-values {
+	@media (max-width: 680px) {
+		h2 {
+			font-size: 1.1em;
+			font-weight: 200;
+		}
+	}
 }
 .copyright {
 	margin-top: 40px;
