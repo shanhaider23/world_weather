@@ -6,6 +6,9 @@ import './MapComponent.scss';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { LeafletMouseEvent } from 'leaflet';
 import L from 'leaflet';
+import markerIcon2x from '/images/marker-icon-2x.png';
+import markerIcon from '/images/marker-icon.png';
+import markerShadow from '/images/marker-shadow.png';
 
 interface WeatherData {
 	coord: {
@@ -51,6 +54,11 @@ interface MapComponentProps {
 	setWeather: (data: WeatherData) => void;
 }
 
+L.Icon.Default.mergeOptions({
+	iconRetinaUrl: markerIcon2x,
+	iconUrl: markerIcon,
+	shadowUrl: markerShadow,
+});
 const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 	const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
 		null
