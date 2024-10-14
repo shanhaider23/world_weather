@@ -89,7 +89,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ setWeather }) => {
 		<div className="search">
 			<div className="search__title">
 				<img src={WeatherIcon} alt="Weather" className="search__icon" />
-				<h1 className="search__heading">Weather App</h1>
+				<h1 className="search__heading">Weather</h1>
 			</div>
 
 			<div className="search__box">

@@ -65,6 +65,9 @@
 		&:hover {
 			transform: scale(1.2);
 		}
+		@media (max-width: 768px) {
+			height: 30px;
+		}
 	}
 
 	&__error-message {
@@ -79,8 +82,5 @@
 @media (max-width: 768px) {
 	.search__input {
 		width: 200px;
-	}
-	.search__button {
-		padding: 10px;
 	}
 }
