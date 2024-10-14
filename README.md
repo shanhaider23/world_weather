@@ -14,14 +14,14 @@ This is a simple weather app built with **React** and **TypeScript** that integr
 
 ## Technology Stack
 
-**_React_**: This is the main framework used to build the frontend part of the app.
-**_TypeScript_**: It enables type safety - the compiler will shout at you, helping to reduce runtime errors.
-**_SCSS_**: For writing modular and maintainable styles using the BEM methodology.
-**_Axios_**: Handling API requests for fetching weather data.
-**_Leaflet/React Leaflet_**: A library used in integrating interactive maps into the application.
-**_OpenWeatherMap API_**: To get the current weather.
-**_ClipLoader_**: A loader spinner from react-spinners that is used when fetching location-based weather.
-**_Cypress_**: End-to-end testing framework.
+- **_React_**: This is the main framework used to build the frontend part of the app.
+- **_TypeScript_**: It enables type safety - the compiler will shout at you, helping to reduce runtime errors.
+- **_SCSS_**: For writing modular and maintainable styles using the BEM methodology.
+- **_Axios_**: Handling API requests for fetching weather data.
+- **_Leaflet/React Leaflet_**: A library used in integrating interactive maps into the application.
+- **_OpenWeatherMap API_**: To get the current weather.
+- **_ClipLoader_**: A loader spinner from react-spinners that is used when fetching location-based weather.
+- **_Cypress_**: End-to-end testing framework.
 
 ## Components
 
