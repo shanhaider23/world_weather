@@ -75,3 +75,13 @@ The styles in this project are organized using the BEM methodology. This helps c
 .weather-card**icon: The icon is an element of the weather-card block.
 .search**input: The input element inside the search block.
 .temperature-toggle\_\_btn: The button element inside the temperature-toggle block.
+
+## App 
+![image](https://github.com/user-attachments/assets/4460824a-beab-448c-b2ee-6098173d25d5)
+
+##  End to End Test 
+
+![image](https://github.com/user-attachments/assets/272bbb44-7286-4845-91a9-4e1b35ec7e67)
+
+
+
