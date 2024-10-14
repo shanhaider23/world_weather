@@ -1,14 +1,77 @@
 # Weather App
 
-This is a simple weather app built with **React** and **TypeScript** that integrates the **MapBox** API for displaying maps and the **OpenWeatherMap** API for fetching weather data. The app includes features like weather search, temperature toggling between Celsius and Fahrenheit, and clickable map locations to fetch weather information.
+This is a simple weather app built with **React** and **TypeScript** that integrates the **OpenWeatherMap** API for fetching the real-time weather data. It provides the user with an interface to make queries by name of city or click any location on the map and display the current weather conditions, including temperature, wind speed, humidity, visibility, and times for sunrise and sunset. The user can use either Celsius or Fahrenheit as the temperature unit.
 
 ## Features
 
-- 🌍 **Map Integration**: Click on locations to get weather information.
-- 🔍 **City Search**: Search for weather by city name.
-- 🌡️ **Temperature Toggle**: Toggle between Celsius and Fahrenheit.
-- 🎨 **Responsive Design**: The app is fully responsive and mobile-friendly.
+- 🌍 **Map Integration**: On click anywhere on the map, the user should be in a position to get the weather information associated with that location.
+- 🔍 **City Search**: The user can search for any city in the world using the search bar. The application fetches data about the weather from the OpenWeatherMap API based on user input.
+- 🌡️ **Temperature Toggle**: The user can switch between Celsius and Fahrenheit, respectively, according to the user's preference.
+- 🎨 **Responsive Design**: The application is fully responsive, starting from mobile views up to desktops.
+- **Current Weather Data**: It displays current weather data like temperature, wind speed, humidity, visibility, and sunrise/sunset-all with visual icons for better UX.
+- **Error Handling**: It handles invalid city names and API errors in case of non-responsive data.
+- **End-to-End Testing**: Integrated Cypress testing for key functionalities of the app.
 
-## Installation
+## Technology Stack
 
-1. Clone the repository:
+**_React_**: This is the main framework used to build the frontend part of the app.
+**_TypeScript_**: It enables type safety - the compiler will shout at you, helping to reduce runtime errors.
+**_SCSS_**: For writing modular and maintainable styles using the BEM methodology.
+**_Axios_**: Handling API requests for fetching weather data.
+**_Leaflet/React Leaflet_**: A library used in integrating interactive maps into the application.
+**_OpenWeatherMap API_**: To get the current weather.
+**_ClipLoader_**: A loader spinner from react-spinners that is used when fetching location-based weather.
+**_Cypress_**: End-to-end testing framework.
+
+## Components
+
+### App Component:
+
+The root wrapper of the application. It manages the state of fetched data with regard to weather and organizes the layout, comprising SearchComponent, WeatherCard, and MapComponent.
+
+### SearchComponent:
+
+An input search allowing users to input city names to fetch weather data. Instant validation of user input against invalid entry is implemented.
+
+### WeatherCard:
+
+Presents the current weather conditions extended, such as temperature, sunrise, sunset, wind speed, and more. Works with TemperatureToggle to toggle the temperature units.
+
+### MapComponent:
+
+An interactive map using react-leaflet to click on a position and fetch weather from that position.
+
+### TemperatureToggle:
+
+A simple button for allowing users to toggle between Celsius and Fahrenheit; conversion is done immediately.
+
+## Setup and Installation
+
+**Clone the repository**:
+
+git clone https://github.com/your-username/weather-app.git
+cd weather-app
+
+**Install dependencies**:
+
+npm install
+
+Create a .env file in the root of the project and add your OpenWeatherMap API key:
+
+VITE_OPENWEATHER_API_KEY=your_api_key_here
+
+**Run the application**:
+
+npm run dev
+
+Open your browser and navigate to:
+
+http://localhost:3000
+
+## BEM (Block, Element, Modifier) Naming Convention
+
+The styles in this project are organized using the BEM methodology. This helps create reusable and scalable styles for each component. Here are a few examples:
+
+.weather-card**icon: The icon is an element of the weather-card block.
+.search**input: The input element inside the search block.
+.temperature-toggle\_\_btn: The button element inside the temperature-toggle block.

@@ -21,7 +21,7 @@ describe('Weather App', () => {
 	});
 
 	it('should display weather info when a location is clicked on the map', () => {
-		cy.wait(2000);
+		cy.wait(3000);
 		cy.get('.leaflet-container').click(300, 300);
 		cy.get('.weather-card').should('be.visible');
 	});
