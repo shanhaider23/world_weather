@@ -37,6 +37,7 @@ interface WeatherData {
 		sunrise: number;
 		sunset: number;
 	};
+	visibility?: number;
 	name: string;
 	dt: number;
 	id: number;

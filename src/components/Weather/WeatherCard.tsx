@@ -43,7 +43,7 @@ interface WeatherData {
 		sunrise: number;
 		sunset: number;
 	};
-	visibility: number;
+	visibility?: number;
 	name: string;
 	dt: number;
 	id: number;
@@ -155,7 +155,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
 						<h2>
 							<strong>Visibility</strong>
 						</h2>
-						<h2>{visibility / 1000} km</h2>
+						<h2>{visibility ? (visibility / 1000).toFixed(1) : 'N/A'} km</h2>
 					</div>
 				</div>
 				<div className="weather-card__details-box">

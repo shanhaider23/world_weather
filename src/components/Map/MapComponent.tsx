@@ -4,6 +4,8 @@ import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import './MapComponent.scss';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { LeafletMouseEvent } from 'leaflet';
+import L from 'leaflet';
 
 interface WeatherData {
 	coord: {
@@ -38,6 +40,7 @@ interface WeatherData {
 		sunrise: number;
 		sunset: number;
 	};
+	visibility?: number;
 	name: string;
 	dt: number;
 	id: number;
@@ -61,7 +64,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ setWeather }) => {
 		const map = useMap();
 
 		useMapEvents({
-			click: async (e) => {
+			click: async (e: LeafletMouseEvent) => {
 				const { lat, lng } = e.latlng;
 				setMarkerPosition([lat, lng]);
 
