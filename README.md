@@ -1,11 +1,11 @@
 # Weather App
 
-This is a simple weather app built with **React** and **TypeScript** that integrates the **OpenWeatherMap** API for fetching the real-time weather data. It provides the user with an interface to make queries by name of city or click any location on the map and display the current weather conditions, including temperature, wind speed, humidity, visibility, and times for sunrise and sunset. The user can use either Celsius or Fahrenheit as the temperature unit.
+This is a simple weather app built with **React** and **TypeScript** that integrates the **OpenWeatherMap** API for fetching real-time weather data. It provides the user with an interface to make queries by city name or click any location on the map and display the current weather conditions, including temperature, wind speed, humidity, visibility, and times for sunrise and sunset. The user can use either Celsius or Fahrenheit as the temperature unit.
 
 ## Features
 
-- 🌍 **Map Integration**: On click anywhere on the map, the user should be in a position to get the weather information associated with that location.
-- 🔍 **City Search**: The user can search for any city in the world using the search bar. The application fetches data about the weather from the OpenWeatherMap API based on user input.
+- 🌍 **Map Integration**: On clicking anywhere on the map, the user should be in a position to get the weather information associated with that location.
+- 🔍 **City Search**: The user can use the search bar to find any city in the world. Based on user input, the application fetches data about the weather from the OpenWeatherMap API.
 - 🌡️ **Temperature Toggle**: The user can switch between Celsius and Fahrenheit, respectively, according to the user's preference.
 - 🎨 **Responsive Design**: The application is fully responsive, starting from mobile views up to desktops.
 - **Current Weather Data**: It displays current weather data like temperature, wind speed, humidity, visibility, and sunrise/sunset-all with visual icons for better UX.
@@ -27,11 +27,11 @@ This is a simple weather app built with **React** and **TypeScript** that integr
 
 ### App Component:
 
-The root wrapper of the application. It manages the state of fetched data with regard to weather and organizes the layout, comprising SearchComponent, WeatherCard, and MapComponent.
+The root wrapper of the application. It manages the state of fetched data about weather and organizes the layout, comprising SearchComponent, WeatherCard, and MapComponent.
 
 ### SearchComponent:
 
-An input search allowing users to input city names to fetch weather data. Instant validation of user input against invalid entry is implemented.
+An input search allows users to input city names to fetch weather data. Instant validation of user input against invalid entries is implemented.
 
 ### WeatherCard:
 
@@ -43,7 +43,7 @@ An interactive map using react-leaflet to click on a position and fetch weather 
 
 ### TemperatureToggle:
 
-A simple button for allowing users to toggle between Celsius and Fahrenheit; conversion is done immediately.
+A simple button allows users to toggle between Celsius and Fahrenheit; conversion is done immediately.
 
 ## Setup and Installation
 
